@@ -41,6 +41,7 @@ const Users = () => {
                         <th scope="col">Профессия</th>
                         <th scope="col">Встретился, раз</th>
                         <th scope="col">Оценка</th>
+                        <th scope="col">Избранное</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -65,6 +66,8 @@ const Users = () => {
                                 <td>{user.completedMeetings}</td>
 
                                 <td>{user.rate} / 5</td>
+
+                                <td><i className="bi bi-star"></i></td>
 
                                 <td>
                                     <button
