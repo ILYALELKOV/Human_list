@@ -19,6 +19,13 @@ const Users = () => {
         }
     }
 
+    const bookmark = (bookmark ,id) => {
+        setUsers(users.map(elem => elem._id === id ? {...elem, bookmark:true} : elem))
+        if(bookmark === true) {
+            return setUsers(users.map(elem => elem._id === id ? {...elem, bookmark:false} : elem))
+        }
+    }
+
     return (
         <>
             <h2>
@@ -67,7 +74,16 @@ const Users = () => {
 
                                 <td>{user.rate} / 5</td>
 
-                                <td><i className="bi bi-star"></i></td>
+                                <td>
+                                    <span
+                                        className={"bi bi-star" + (user.bookmark === true
+                                                ? "-fill"
+                                                : ""
+                                        )}
+                                        onClick={() => bookmark(user.bookmark, user._id)}
+                                    >
+                                    </span>
+                                </td>
 
                                 <td>
                                     <button
