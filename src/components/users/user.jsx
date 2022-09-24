@@ -1,5 +1,5 @@
-import Qualities from "./Qualities";
 import React from "react";
+import Quality from "./quality";
 
 const User = (props) => {
 
@@ -7,7 +7,13 @@ const User = (props) => {
         <tr>
             <td>{props.name}</td>
             <td>
-                <Qualities list={props}/>
+                {props.qualities.map(quality => (
+                    <Quality
+                        key={quality._id}
+                        {...quality}
+                    />
+                ))
+                }
             </td>
             <td>{props.profession.name}</td>
             <td>{props.completedMeetings}</td>
