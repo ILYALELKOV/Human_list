@@ -1,8 +1,9 @@
 import React, {useState} from "react";
-import API from "../api";
+import API from "../../api";
 import 'bootstrap/dist/css/bootstrap.css'
 import Qualities from "./Qualities";
-import Status from "./Status";
+import StatusParty from "./statusParty";
+import Pagination from "./Pagination";
 
 const Users = () => {
     const [users, setUsers] = useState(API.users.fetchAll())
@@ -21,12 +22,19 @@ const Users = () => {
     //     }
     // }
 
-    const bookmark = (bookmark ,id) => {
-        setUsers(users.map(elem => elem._id === id ? {...elem, bookmark:true} : elem))
-        if(bookmark === true) {
-            return setUsers(users.map(elem => elem._id === id ? {...elem, bookmark:false} : elem))
+    const bookmark = (bookmark, id) => {
+        setUsers(users.map(elem => elem._id === id ? {...elem, bookmark: true} : elem))
+        if (bookmark === true) {
+            return setUsers(users.map(elem => elem._id === id ? {...elem, bookmark: false} : elem))
         }
         // setUsers(prevState=> prevState.map(elem => id === elem._id ? {...elem, bookmark:true} : elem))
+    }
+
+    const count = users.length
+    const pageSize = 4
+
+    const handlePageChange = (pageIndex) => {
+        console.log(pageIndex)
     }
 
     return (
@@ -40,8 +48,8 @@ const Users = () => {
             {/*    {users.length > 0 ? renderMessage(users.length) : "Никто с тобой не тусанет"}*/}
             {/*    </span>*/}
             {/*</h2>*/}
-            <Status userList={users}/>
-            {users.length > 0 && (
+            <StatusParty userList={users.length}/>
+            {count > 0 && (
                 <table
                     className={"table"}
                 >
@@ -63,14 +71,14 @@ const Users = () => {
                                 <td>{user.name}</td>
 
                                 <td>
-                                {/*    {user.qualities.map(elem => (*/}
-                                {/*    <span*/}
-                                {/*        key={elem._id}*/}
-                                {/*        className={"m-1 badge bg-" + elem.color}*/}
-                                {/*    >*/}
-                                {/*        {elem.name}*/}
-                                {/*    </span>*/}
-                                {/*))}*/}
+                                    {/*    {user.qualities.map(elem => (*/}
+                                    {/*    <span*/}
+                                    {/*        key={elem._id}*/}
+                                    {/*        className={"m-1 badge bg-" + elem.color}*/}
+                                    {/*    >*/}
+                                    {/*        {elem.name}*/}
+                                    {/*    </span>*/}
+                                    {/*))}*/}
                                     <Qualities list={user}/>
                                 </td>
 
@@ -105,6 +113,7 @@ const Users = () => {
                     </tbody>
                 </table>
             )}
+            <Pagination itemsCount={count} pageSize={pageSize} onPageChange={handlePageChange}/>
         </>
     )
 }
