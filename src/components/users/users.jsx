@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import Qualities from "./Qualities";
 import StatusParty from "./statusParty";
 import Pagination from "./Pagination";
+import UsersTableHead from "./usersTableHead";
 
 const Users = () => {
     const [users, setUsers] = useState(API.users.fetchAll())
@@ -39,31 +40,12 @@ const Users = () => {
 
     return (
         <>
-            {/*<h2>*/}
-            {/*    <span*/}
-            {/*        className={"badge " + (users.length > 0*/}
-            {/*            ? "bg-primary m-2"*/}
-            {/*            : "bg-danger m-2")}*/}
-            {/*    >*/}
-            {/*    {users.length > 0 ? renderMessage(users.length) : "Никто с тобой не тусанет"}*/}
-            {/*    </span>*/}
-            {/*</h2>*/}
             <StatusParty userList={users.length}/>
             {count > 0 && (
                 <table
                     className={"table"}
                 >
-                    <thead>
-                    <tr>
-                        <th scope="col">Имя</th>
-                        <th scope="col">Качества</th>
-                        <th scope="col">Профессия</th>
-                        <th scope="col">Встретился, раз</th>
-                        <th scope="col">Оценка</th>
-                        <th scope="col">Избранное</th>
-                        <th></th>
-                    </tr>
-                    </thead>
+                    <UsersTableHead/>
                     <tbody>
                     {
                         users.map((user) => (

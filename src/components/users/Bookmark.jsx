@@ -1,7 +1,7 @@
 import React from "react";
 
-const Bookmark =({status, ...rest}) => {
-
+const Bookmark = () => {
+    return (<></>)
 }
 
 export default Bookmark
