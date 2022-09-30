@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import API from "../../api";
 import 'bootstrap/dist/css/bootstrap.css'
 import StatusParty from "./statusParty";
-import Pagination from "./Pagination";
+import Pagination from "./pagination";
 import UsersTableHead from "./usersTableHead";
 import User from "./user";
 
