@@ -1,5 +1,6 @@
 import React from "react";
 import Quality from "./quality";
+import Bookmark from "./bookmark";
 
 const User = (props) => {
 
@@ -15,7 +16,7 @@ const User = (props) => {
             <td>{props.profession.name}</td>
             <td>{props.completedMeetings}</td>
             <td>{props.rate} / 5</td>
-            <td></td>
+            <td><Bookmark qwe={props.bookmark}/></td>
             <td>
                 <button
                     className="btn btn-danger"
