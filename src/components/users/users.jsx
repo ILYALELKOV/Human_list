@@ -22,7 +22,7 @@ const Users = () => {
 
     return (
         <>
-            <StatusParty userList={users.length}/>
+            <StatusParty userList={count}/>
             {count > 0 && (
                 <table
                     className={"table"}
