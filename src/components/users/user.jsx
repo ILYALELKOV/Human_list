@@ -8,16 +8,14 @@ const User = (props) => {
             <td>{props.name}</td>
             <td>
                 {props.qualities.map(quality => (
-                    <Quality
-                        key={quality._id}
-                        {...quality}
-                    />
+                    <Quality key={quality._id} {...quality}/>
                 ))
                 }
             </td>
             <td>{props.profession.name}</td>
             <td>{props.completedMeetings}</td>
             <td>{props.rate} / 5</td>
+            <td></td>
             <td>
                 <button
                     className="btn btn-danger"
