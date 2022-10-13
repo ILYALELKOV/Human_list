@@ -11,7 +11,6 @@ const Bookmark = ({bookmark, onChangeBookmark, id}) => {
             className={`bi bi-star${getIconClass()}`}
             onClick={() => onChangeBookmark(id)}
         >
-
         </span>
     )
 }

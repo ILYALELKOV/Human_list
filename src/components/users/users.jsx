@@ -13,6 +13,15 @@ const Users = () => {
         setUsers((prevState) => prevState.filter(user => user._id !== id))
     }
 
+    const handleChangeBookmark = (id) => {
+        setUsers((prevState) => prevState.map(user => {
+            if (user._id === id) {
+                return {...user, bookmark: !user.bookmark}
+            }
+            return user
+        }))
+    }
+
     const count = users.length
     const pageSize = 4
     // const [currentPage, setCurrentPage] = useState(1)
