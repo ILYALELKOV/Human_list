@@ -16,7 +16,7 @@ const User = (props) => {
             <td>{props.profession.name}</td>
             <td>{props.completedMeetings}</td>
             <td>{props.rate} / 5</td>
-            <td><Bookmark qwe={props.bookmark}/></td>
+            <td><Bookmark bookmark={props.bookmark} onChangeBookmark={props.onChangeBookmark} id={props._id}/></td>
             <td>
                 <button
                     className="btn btn-danger"

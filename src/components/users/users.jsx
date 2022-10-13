@@ -15,10 +15,11 @@ const Users = () => {
 
     const count = users.length
     const pageSize = 4
+    // const [currentPage, setCurrentPage] = useState(1)
 
-    const handlePageChange = (pageIndex) => {
-        console.log(pageIndex)
-    }
+    // const handlePageChange = (pageIndex) => {
+    //     setCurrentPage(pageIndex)
+    // }
 
     return (
         <>
@@ -34,13 +35,19 @@ const Users = () => {
                             key={user._id}
                             {...user}
                             onDelete={handleDeleteUser}
+                            onChangeBookmark={handleChangeBookmark}
                         />
                     ))
                     }
                     </tbody>
                 </table>
             )}
-            <Pagination itemsCount={count} pageSize={pageSize} onPageChange={handlePageChange}/>
+            <Pagination
+                itemsCount={count}
+                pageSize={pageSize}
+                // currentPage={currentPage}
+                // onPageChange={handleP.ageChange}
+            />
         </>
     )
 }
