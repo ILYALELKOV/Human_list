@@ -24,11 +24,11 @@ const Users = () => {
 
     const count = users.length
     const pageSize = 4
-    // const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState(1)
 
-    // const handlePageChange = (pageIndex) => {
-    //     setCurrentPage(pageIndex)
-    // }
+    const handlePageChange = (pageIndex) => {
+        setCurrentPage(pageIndex)
+    }
 
     return (
         <>
@@ -54,8 +54,8 @@ const Users = () => {
             <Pagination
                 itemsCount={count}
                 pageSize={pageSize}
-                // currentPage={currentPage}
-                // onPageChange={handleP.ageChange}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
             />
         </>
     )

@@ -18,17 +18,18 @@ const Pagination = ({itemsCount, pageSize, onPageChange, currentPage}) => {
                         <a
                             className="page-link"
                             onClick={() => onPageChange(page)}
-                            href="/"
+                            href="#"
                         >
                             {page}
                         </a>
                     </li>)}
             </ul>
         </nav>
-    );
-};
+    )
+}
 
-export default Pagination;
+export default Pagination
+
 
 
 
