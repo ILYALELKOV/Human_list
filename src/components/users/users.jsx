@@ -5,6 +5,7 @@ import StatusParty from "./statusParty";
 import Pagination from "./pagination";
 import UsersTableHead from "./usersTableHead";
 import User from "./user";
+import {paginate} from "../../utils/paginate";
 
 const Users = () => {
     const [users, setUsers] = useState(API.users.fetchAll())
@@ -30,6 +31,8 @@ const Users = () => {
         setCurrentPage(pageIndex)
     }
 
+    const userCrop = paginate(users, currentPage, pageSize)
+
     return (
         <>
             <StatusParty userList={count}/>
@@ -39,7 +42,7 @@ const Users = () => {
                 >
                     <UsersTableHead/>
                     <tbody>
-                    {users.map(user => (
+                    {userCrop.map(user => (
                         <User
                             key={user._id}
                             {...user}
