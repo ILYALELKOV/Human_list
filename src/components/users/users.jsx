@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import API from '../../api'
-import api from '../../api'
 import Pagination from './pagination'
 import UsersTableHead from './usersTableHead'
 import User from './user'
@@ -9,7 +8,8 @@ import GroupList from './groupList'
 import StatusParty from './statusParty'
 
 const Users = () => {
-	const [users, setUsers] = useState(API.users.fetchAll())
+	const [users, setUsers] = useState([])
+	const [isLoading, setIsLoading] = useState(true)
 
 	const handleDeleteUser = (id) => {
 		setUsers((prevState) => prevState.filter((user) => user._id !== id))
@@ -29,7 +29,14 @@ const Users = () => {
 	const [professions, setProfession] = useState()
 
 	useEffect(() => {
-		api.professions.fetchAll().then((data) => setProfession(data))
+		API.professions.fetchAll().then((data) => setProfession(data))
+	}, [])
+
+	useEffect(() => {
+		API.users.fetchAll().then((data) => {
+			setUsers(data)
+			setIsLoading(false)
+		})
 	}, [])
 
 	const handleProfessionSelect = (item) => {
@@ -55,10 +62,22 @@ const Users = () => {
 		setSelectedProf()
 	}
 
+	useEffect(() => {
+		if (filteredUsers.length < pageSize) {
+			setCurrentPage(1)
+		} else if (userCrop.length === 0) {
+			setCurrentPage(currentPage - 1)
+		}
+	}, [userCrop])
+
+	if (isLoading) {
+		return 'Loading...'
+	}
+
 	return (
-		<div className="d-flex container-lg">
+		<div className='d-flex container-lg'>
 			{professions && (
-				<div className="mt-2 mx-3">
+				<div className='mt-2 mx-3'>
 					<GroupList
 						selectedItem={selectedProf}
 						items={professions}
@@ -66,7 +85,7 @@ const Users = () => {
 					/>
 					<button
 						onClick={clearFilter}
-						className="btn btn-outline-danger mt-2 btn-lg"
+						className='btn btn-outline-danger mt-2 btn-lg'
 					>
 						Очистить
 					</button>
@@ -78,18 +97,18 @@ const Users = () => {
 					<table className={'table'}>
 						<UsersTableHead />
 						<tbody>
-							{userCrop.map((user) => (
-								<User
-									key={user._id}
-									{...user}
-									onDelete={handleDeleteUser}
-									onChangeBookmark={handleChangeBookmark}
-								/>
-							))}
+						{userCrop.map((user) => (
+							<User
+								key={user._id}
+								{...user}
+								onDelete={handleDeleteUser}
+								onChangeBookmark={handleChangeBookmark}
+							/>
+						))}
 						</tbody>
 					</table>
 				)}
-				<div className="d-flex justify-content-center">
+				<div className='d-flex justify-content-center'>
 					<Pagination
 						itemsCount={count}
 						pageSize={pageSize}
